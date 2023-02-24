@@ -48,25 +48,25 @@ const months = [
 //   },
 // ];
 
-const eventsArr = [
-  {
-    day: 12,
-    month: 6,
-    year: 2023,
-    events: [
-      {
-        title: "Bruno's birthday [TEST]",
-        time: "0:00 AM"
-      }
-    ]
-  }
-];
-setEvents();
+const eventsArr = [];
 
-function setEvents() {
-  eventsArr.forEach((item) => {
-      console.log(item);
-  });
+setEvents(14, 2, "San Valentine's day");
+setEvents(12, 6, "Bruno's Birthday [TEST]");
+
+function setEvents(d, m, t) {
+  eventsArr.push(
+    {
+      day: d,
+      month: m,
+      year: 2023,
+      events: [{
+        title: t,
+        time: '00:00 AM'
+      }]
+    }
+  )
+  // for(let y = 2020; y <= 2024; y++) {
+  // }
 }
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
