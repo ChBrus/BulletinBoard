@@ -256,7 +256,7 @@ function gotoDate() {
       return;
     }
   }
-  alert("Invalid Date");
+  alert("You can only move around 2023");
 }
 
 //function get active day day name and date and update eventday eventdate
