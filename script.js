@@ -8,7 +8,9 @@ const calendar = document.querySelector(".calendar"),
   dateInput = document.querySelector(".date-input"),
   eventDay = document.querySelector(".event-day"),
   eventDate = document.querySelector(".event-date"),
-  eventsContainer = document.querySelector(".events");
+  eventsContainer = document.querySelector(".events"),
+  gameContainer = document.querySelector(".game"),
+  questionContainer = document.querySelector('.question');
   
 let today = new Date();
 let activeDay;
@@ -50,8 +52,13 @@ const months = [
 
 const eventsArr = [];
 
-setEvents(5, 1, "Sebastian's Birthday")
+// Holidays
+setEvents(1, 1, "New Year's Day")
+setEvents(6, 1, "Kings Day")
 setEvents(14, 2, "San Valentine's day")
+
+// Birthdays
+setEvents(5, 1, "Sebastian's Birthday")
 setEvents(4, 3, "Joleth's Birthday")
 setEvents(26, 3, "Daniel's Birthday")
 setEvents(1, 4, "Nicole's Birthday")
@@ -230,11 +237,11 @@ todayBtn.addEventListener("click", () => {
 
 dateInput.addEventListener("input", (e) => {
   dateInput.value = dateInput.value.replace(/[^0-9/]/g, "");
-  if (dateInput.value.length === 2) {
-    dateInput.value += "/";
-  }
-  if (dateInput.value.length > 7) {
-    dateInput.value = dateInput.value.slice(0, 7);
+  // if (dateInput.value.length === 2) {
+  //   dateInput.value += "/";
+  // }
+  if (dateInput.value.length > 2) {
+    dateInput.value = dateInput.value.slice(0, 2);
   }
   if (e.inputType === "deleteContentBackward") {
     if (dateInput.value.length === 3) {
@@ -320,5 +327,8 @@ const POINTSLIFE = 3
 
 function game() {
   let pl = POINTSLIFE
-  alert('You have ' + pl + " PL")
+  eventsContainer.style.display = "none";
+  eventDay.style.display = "none"
+  eventDate.style.display = "none"
+  questionContainer.style.display = "none"
 }
