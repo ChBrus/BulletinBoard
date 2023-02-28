@@ -206,7 +206,7 @@
     margin-bottom: 20px;
     color: var(--primary-clr);
   }
-  .calendar .goto-today .goto {
+  .calendar .goto-today .goto, .game {
     display: flex;
     align-items: center;
     border-radius: 5px;
@@ -223,7 +223,7 @@
     color: var(--primary-clr);
     border-radius: 5px;
   }
-  .calendar .goto-today button {
+  .calendar .goto-today button, .game button {
     padding: 5px 10px;
     border: 1px solid var(--primary-clr);
     border-radius: 5px;
@@ -231,14 +231,24 @@
     cursor: pointer;
     color: var(--primary-clr);
   }
-  .calendar .goto-today button:hover {
+  .calendar .goto-today button:hover, .game button:hover {
     color: #fff;
     background-color: var(--primary-clr);
   }
-  .calendar .goto-today .goto button {
+  .calendar .goto-today .goto button, .game button {
     border: none;
     border-left: 1px solid var(--primary-clr);
     border-radius: 0;
+  }
+  .game {
+    width: 80%;
+    color: var(--primary-clr);
+    gap: 1px;
+    padding: 0;
+    margin-left: 7.5%;
+  }
+  .game p {
+    padding: 10px;
   }
   .container .right {
     position: relative;

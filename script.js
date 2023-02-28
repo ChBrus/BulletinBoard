@@ -50,8 +50,28 @@ const months = [
 
 const eventsArr = [];
 
-setEvents(14, 2, "San Valentine's day");
-setEvents(12, 6, "Bruno's Birthday [TEST]");
+setEvents(5, 1, "Sebastian's Birthday")
+setEvents(14, 2, "San Valentine's day")
+setEvents(4, 3, "Joleth's Birthday")
+setEvents(26, 3, "Daniel's Birthday")
+setEvents(1, 4, "Nicole's Birthday")
+setEvents(4, 4, "Carlos' Birthday")
+setEvents(1, 6, "Nathalia's Birthday")
+setEvents(7, 6, "Andriy's Birthday")
+setEvents(12, 6, "Bruno's Birthday")
+setEvents(24, 6, "Edgar's Birthday")
+setEvents(26, 6, "Daniel's Birthday")
+setEvents(11, 7, "Vianca's Birthday")
+setEvents(26, 7, "Alonso's Birthday")
+setEvents(26, 7, "Emiliano's Birthday")
+setEvents(28, 7, "Gilberto's Birthday")
+setEvents(11, 8, "Fernando's Birthday")
+setEvents(27, 9, "Paul's Birthday")
+setEvents(6, 10, "Emiliano's Birthday")
+setEvents(17, 10, "Vanessa's Birthday")
+setEvents(7, 11, "Jaime's Birthday")
+setEvents(11, 11, "Sarai's Birthday")
+setEvents(23, 11, "Angel's Birthday")
 
 function setEvents(d, m, t) {
   eventsArr.push(
@@ -65,8 +85,6 @@ function setEvents(d, m, t) {
       }]
     }
   )
-  // for(let y = 2020; y <= 2024; y++) {
-  // }
 }
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
@@ -132,8 +150,9 @@ function initCalendar() {
 function prevMonth() {
   month--;
   if (month < 0) {
-    month = 11;
-    year--;
+    month++;
+    // month = 11;
+    // year--;
   }
   initCalendar();
 }
@@ -141,8 +160,9 @@ function prevMonth() {
 function nextMonth() {
   month++;
   if (month > 11) {
-    month = 0;
-    year++;
+    month--;
+    // month = 0;
+    // year++;
   }
   initCalendar();
 }
@@ -229,7 +249,7 @@ function gotoDate() {
 //   console.log("here");
   const dateArr = dateInput.value.split("/");
   if (dateArr.length === 2) {
-    if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
+    if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4 && (dateArr[1] == 2023)) {
       month = dateArr[0] - 1;
       year = dateArr[1];
       initCalendar();
@@ -294,4 +314,11 @@ function convertTime(time) {
   timeHour = timeHour % 12 || 12;
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
+}
+
+const POINTSLIFE = 3
+
+function game() {
+  let pl = POINTSLIFE
+  alert('You have ' + pl + " PL")
 }
