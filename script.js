@@ -324,11 +324,65 @@ function convertTime(time) {
 }
 
 const POINTSLIFE = 3
+const questions = []
+
+// Possible questions
+setQuestions(1, 1, "Today we have grapes, beer and a count from 10 to 0. We start another year")
+setQuestions(6, 1, "Who will break the thread today?")
+setQuestions(1, 14, "The perfect day to be rejected in an epic way… You can bring chocolates, letters, give kisses…")
+setQuestions(8, 3, "The feminist girls are going to go crazy today... It's their day, and of all women, you know what I mean")
+setQuestions(18, 4, "Jesus died.")
+setQuestions(30, 4, "Children receive gifts from adults... Why?  because they are kids!!!")
+setQuestions(1, 5, "Nobody works today!!!  because it's a work day")
+setQuestions(5, 5, "would you like to go to town?  but bring your gun please...")
+setQuestions(10, 5, "We better bring flowers to our mother...")
+setQuestions(16, 6, "We better take something for dad, or he'll feel bad in his day...")
+setQuestions(2, 10, "Today is to remember that we must be peaceful")
+setQuestions(24, 10, "196 countries joined today")
+setQuestions(31, 10, "We need to find a suitable costume NOW!  IT'S OCTOBER")
+setQuestions(2, 11, "today we must make an altar and use salt to protect our house!")
+setQuestions(20, 11, "The land belongs to anyone who works on it!  Francisco I Madero once said, at the time to…")
+setQuestions(3, 12, "Yes, but we need a day for differently-abled people, right?")
+setQuestions(25, 12, "Santa Claus is coming to the town...")
+setQuestions(28, 12, "My mother died... JUST KIDDING!!")
+
+function setQuestions(d, m, q) {
+  questions.push(
+    {
+      day: d,
+      month: m,
+      question: q
+    }
+  )
+}
 
 function game() {
   let pl = POINTSLIFE
+  let randomlyQuestions = []
+  let temp = 0
+
+  questions.forEach((value) => {
+    temp = randomly(0, 2)
+
+    if(temp === 1) {
+      randomlyQuestions.push(
+        {
+          day: value.day,
+          month: value.month,
+          question: value.question
+        }
+      )
+    }
+  })
+  
   eventsContainer.style.display = "none";
   eventDay.style.display = "none"
   eventDate.style.display = "none"
   questionContainer.style.display = "none"
+
+  console.log(randomlyQuestions);
+}
+
+function randomly(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
