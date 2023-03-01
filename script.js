@@ -361,19 +361,27 @@ function game() {
   let randomlyQuestions = []
   let temp = 0
 
-  questions.forEach((value) => {
-    temp = randomly(0, 2)
+  for(let i = 0; i < 5; i++) {
+    temp = randomly(0, questions.length);
 
-    if(temp === 1) {
+    if(i == 0) {
       randomlyQuestions.push(
         {
-          day: value.day,
-          month: value.month,
-          question: value.question
+          day: questions[temp].day,
+          month: questions[temp].month,
+          question: questions[temp].question
+        }
+      )
+    } else if(randomlyQuestions[i - 1].question != questions[i].question) {
+      randomlyQuestions.push(
+        {
+          day: questions[temp].day,
+          month: questions[temp].month,
+          question: questions[temp].question
         }
       )
     }
-  })
+  }
   
   eventsContainer.style.display = "none";
   eventDay.style.display = "none"
