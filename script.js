@@ -362,7 +362,7 @@ function game() {
   let temp = 0
 
   for(let i = 0; i < 5; i++) {
-    temp = randomly(0, questions.length);
+    temp = randomly(0, questions.length - 1);
 
     if(i == 0) {
       randomlyQuestions.push(
@@ -372,7 +372,7 @@ function game() {
           question: questions[temp].question
         }
       )
-    } else if(randomlyQuestions[i - 1].question != questions[i].question) {
+    } else if(randomlyQuestions[i - 1].question != questions[temp].question) {
       randomlyQuestions.push(
         {
           day: questions[temp].day,
@@ -380,6 +380,8 @@ function game() {
           question: questions[temp].question
         }
       )
+    } else {
+      i--;
     }
   }
   
@@ -387,6 +389,7 @@ function game() {
   eventDay.style.display = "none"
   eventDate.style.display = "none"
   questionContainer.style.display = "none"
+  gameContainer.style.display = "flex"
 
   console.log(randomlyQuestions);
 }

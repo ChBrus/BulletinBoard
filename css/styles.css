@@ -253,7 +253,7 @@
     color: var(--primary-clr);
     gap: 1px;
     padding: 0;
-    margin-right: 15%;
+    margin-left: 17.5%;
   }
   .question p {
     padding: 10px;
@@ -264,7 +264,14 @@
     min-height: 100%;
     padding: 20px 0;
   }
-  
+  .game {
+    display: flex;
+    
+  }
+  .header-game {
+    font-size: 2rem;
+    text-align: center;
+  }
   .right .today-date {
     width: 100%;
     height: 50px;
