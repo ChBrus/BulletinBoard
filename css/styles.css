@@ -215,7 +215,7 @@
     margin-bottom: 20px;
     color: var(--primary-clr);
   }
-  .calendar .goto-today .goto, .question {
+  .calendar .goto-today .goto, .init-game {
     display: flex;
     align-items: center;
     border-radius: 5px;
@@ -232,7 +232,7 @@
     color: var(--primary-clr);
     border-radius: 5px;
   }
-  .calendar .goto-today button, .question button {
+  .calendar .goto-today button, .init-game button {
     padding: 5px 10px;
     border: 1px solid var(--primary-clr);
     border-radius: 5px;
@@ -240,22 +240,22 @@
     cursor: pointer;
     color: var(--primary-clr);
   }
-  .calendar .goto-today button:hover, .question button:hover {
+  .calendar .goto-today button:hover, .init-game button:hover {
     color: #fff;
     background-color: var(--primary-clr);
   }
-  .calendar .goto-today .goto button, .question button {
+  .calendar .goto-today .goto button, .init-game button {
     border: none;
     border-left: 1px solid var(--primary-clr);
     border-radius: 0;
   }
-  .question {
+  .init-game {
     color: var(--primary-clr);
     gap: 1px;
     padding: 0;
     margin-left: 17.5%;
   }
-  .question p {
+  .init-game p {
     padding: 10px;
   }
   .container .right {

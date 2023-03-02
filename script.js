@@ -10,7 +10,7 @@ const calendar = document.querySelector(".calendar"),
   eventDate = document.querySelector(".event-date"),
   eventsContainer = document.querySelector(".events"),
   gameContainer = document.querySelector(".game"),
-  questionContainer = document.querySelector('.question');
+  initGameContainer = document.querySelector('.init-game');
   
 let today = new Date();
 let activeDay;
@@ -50,38 +50,54 @@ const months = [
 //   },
 // ];
 
+const holidays = [];
+const birthdays = [];
 const eventsArr = [];
 
 // Holidays
-setEvents(1, 1, "New Year's Day")
-setEvents(6, 1, "Kings Day")
-setEvents(14, 2, "San Valentine's day")
+setHolidays(1, 1, "New Year's Day")
+setHolidays(6, 1, "Kings Day")
+setHolidays(14, 2, "San Valentine's day")
 
 // Birthdays
-setEvents(5, 1, "Sebastian's Birthday")
-setEvents(4, 3, "Joleth's Birthday")
-setEvents(26, 3, "Daniel's Birthday")
-setEvents(1, 4, "Nicole's Birthday")
-setEvents(4, 4, "Carlos' Birthday")
-setEvents(1, 6, "Nathalia's Birthday")
-setEvents(7, 6, "Andriy's Birthday")
-setEvents(12, 6, "Bruno's Birthday")
-setEvents(24, 6, "Edgar's Birthday")
-setEvents(26, 6, "Daniel's Birthday")
-setEvents(11, 7, "Vianca's Birthday")
-setEvents(26, 7, "Alonso's Birthday")
-setEvents(26, 7, "Emiliano's Birthday")
-setEvents(28, 7, "Gilberto's Birthday")
-setEvents(11, 8, "Fernando's Birthday")
-setEvents(27, 9, "Paul's Birthday")
-setEvents(6, 10, "Emiliano's Birthday")
-setEvents(17, 10, "Vanessa's Birthday")
-setEvents(7, 11, "Jaime's Birthday")
-setEvents(11, 11, "Sarai's Birthday")
-setEvents(23, 11, "Angel's Birthday")
+setBirthdays(5, 1, "Sebastian's Birthday")
+setBirthdays(4, 3, "Joleth's Birthday")
+setBirthdays(26, 3, "Daniel's Birthday")
+setBirthdays(1, 4, "Nicole's Birthday")
+setBirthdays(4, 4, "Carlos' Birthday")
+setBirthdays(1, 6, "Nathalia's Birthday")
+setBirthdays(7, 6, "Andriy's Birthday")
+setBirthdays(12, 6, "Bruno's Birthday")
+setBirthdays(24, 6, "Edgar's Birthday")
+setBirthdays(26, 6, "Daniel's Birthday")
+setBirthdays(11, 7, "Vianca's Birthday")
+setBirthdays(26, 7, "Alonso's Birthday")
+setBirthdays(26, 7, "Emiliano's Birthday")
+setBirthdays(28, 7, "Gilberto's Birthday")
+setBirthdays(11, 8, "Fernando's Birthday")
+setBirthdays(27, 9, "Paul's Birthday")
+setBirthdays(6, 10, "Emiliano's Birthday")
+setBirthdays(17, 10, "Vanessa's Birthday")
+setBirthdays(7, 11, "Jaime's Birthday")
+setBirthdays(11, 11, "Sarai's Birthday")
+setBirthdays(23, 11, "Angel's Birthday")
 
-function setEvents(d, m, t) {
-  eventsArr.push(
+function setBirthdays(d, m, t) {
+  birthdays.push(
+    {
+      day: d,
+      month: m,
+      year: 2023,
+      events: [{
+        title: t,
+        time: '00:00 AM'
+      }]
+    }
+  )
+}
+
+function setHolidays(d, m, t) {
+  birthdays.push(
     {
       day: d,
       month: m,
@@ -96,6 +112,7 @@ function setEvents(d, m, t) {
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
+  eventsArr.push(...holidays, ...birthdays);
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const prevLastDay = new Date(year, month, 0);
@@ -388,10 +405,10 @@ function game() {
   eventsContainer.style.display = "none";
   eventDay.style.display = "none"
   eventDate.style.display = "none"
-  questionContainer.style.display = "none"
+  initGameContainer.style.display = "none"
   gameContainer.style.display = "flex"
 
-  console.log(randomlyQuestions);
+  
 }
 
 function randomly(min, max) {
