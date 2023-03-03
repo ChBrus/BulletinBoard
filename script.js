@@ -448,6 +448,7 @@ function game() {
   possibleAnswers[0].innerHTML = findHoliday(randomlyQuestions[numberQ])
   possibleAnswers[1].innerHTML = findHoliday(eventsArr[randomly(0, 34)])
   possibleAnswers[2].innerHTML = findHoliday(eventsArr[randomly(0, 34)])
+  document.querySelector(".life").innerHTML = pl
 
   possibleAnswers[0].style.order = randomly(0, 3)
   possibleAnswers[1].style.order = randomly(0, 3)
@@ -455,17 +456,21 @@ function game() {
 }
 
 function isTheGoodAnswer(event) {
-  if(event.textContent.match(findHoliday(randomlyQuestions[numberQ]))) {
+  console.log(findHoliday(randomlyQuestions[numberQ]));
+  console.log(event.textContent.replace(' ', '') == findHoliday(randomlyQuestions[numberQ]).replace(' ', ''));
+  if(event.textContent.replace(' ', '') == findHoliday(randomlyQuestions[numberQ]).replace(' ', '')) {
+    numberQ++;
     questinoToShow.innerHTML = randomlyQuestions[numberQ].question
     possibleAnswers[0].innerHTML = findHoliday(randomlyQuestions[numberQ])
     possibleAnswers[1].innerHTML = findHoliday(eventsArr[randomly(0, 34)])
     possibleAnswers[2].innerHTML = findHoliday(eventsArr[randomly(0, 34)])
-
+    
     possibleAnswers[0].style.order = randomly(0, 3)
     possibleAnswers[1].style.order = randomly(0, 3)
     possibleAnswers[2].style.order = randomly(0, 3)
+    
     if(numberQ >= 4) {
-      document.querySelector(".result").innerHTML = "Sorry, you lose :c"
+      document.querySelector(".result").innerHTML = "You win :D!!"
       document.querySelector(".result").style.display = "flex"
       document.querySelector(".today-date").style.display = "flex"
       eventsContainer.style.display = "flex";
@@ -473,9 +478,10 @@ function isTheGoodAnswer(event) {
       gameContainer.style.display = "none"
       return;
     }
-    numberQ++;
+    console.log("win");
   } else {
     pl--;
+    document.querySelector(".life").innerHTML = pl
     if(pl <= 0) {
       document.querySelector(".result").innerHTML = "Sorry, you lose :c"
       document.querySelector(".result").style.display = "flex"
