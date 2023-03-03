@@ -10,6 +10,8 @@ const calendar = document.querySelector(".calendar"),
   eventDate = document.querySelector(".event-date"),
   eventsContainer = document.querySelector(".events"),
   gameContainer = document.querySelector(".game"),
+  questinoToShow = document.querySelector(".question"),
+  possibleAnswers = document.querySelectorAll("#answers"),
   initGameContainer = document.querySelector('.init-game');
   
 let today = new Date();
@@ -56,7 +58,7 @@ const eventsArr = [];
 
 // Holidays
 setHolidays(1, 1, "New Year's Day")
-setHolidays(6, 1, "Kings Day")
+setHolidays(6, 1, "King's Day")
 setHolidays(24, 1, "World Education Day")
 setHolidays(5, 2, "Day of the Political Constitution of Mexico")
 setHolidays(10, 2, "Day of the Mexican Air Force")
@@ -65,8 +67,7 @@ setHolidays(24, 2, "Flag Day")
 setHolidays(8, 3, "International Women's Day")
 setHolidays(18, 3, "Day of oil expropiation")
 setHolidays(7, 4, "World Health Day")
-setHolidays(18, 4, "Holy Week, Holy Thurday and Friday")
-setHolidays(19, 4, "Holy Week, Holy Thurday and Friday")
+setHolidays(18, 4, "Holy Week")
 setHolidays(30, 4, "Children's Day")
 setHolidays(1, 5, "Labor Day")
 setHolidays(5, 5, "Battle of Puebla")
@@ -75,8 +76,23 @@ setHolidays(15, 5, "Teacher's Day")
 setHolidays(23, 5, "Students Day")
 setHolidays(1, 6, "National Navy Day")
 setHolidays(8, 6, "World Oceans Day")
-setHolidays(18, 6, "(Third Sunday of the month) Father's Day")
-setHolidays(11, 5, "World Population Day")
+setHolidays(18, 6, "Father's Day")
+setHolidays(11, 7, "World Population Day")
+setHolidays(15, 7, "World Youth Skills Day")
+setHolidays(9, 8, "International Day of Indigenous people")
+setHolidays(12, 8, "International Youth Day")
+setHolidays(15, 9, "International Day of Democracy")
+setHolidays(16, 9, "Mexican Independece Day")
+setHolidays(2, 10, "International Day of Non-Violence")
+setHolidays(16, 10, "World Feeding Day")
+setHolidays(24, 10, "United Nations (ONU) Day")
+setHolidays(31, 10, "Halloween")
+setHolidays(2, 11, "Day of the Dead")
+setHolidays(20, 11, "Day of the Mexican Revolution")
+setHolidays(23, 11, "Day of the Mexican Navy")
+setHolidays(3, 12, "International Day of persons with disabilities")
+setHolidays(25, 12, "Christmas Day")
+setHolidays(28, 12, "Jokes Day")
 
 // Birthdays
 setBirthdays(5, 1, "Sebastian's Birthday")
@@ -366,14 +382,14 @@ const questions = []
 // Possible questions
 setQuestions(1, 1, "Today we have grapes, beer and a count from 10 to 0. We start another year")
 setQuestions(6, 1, "Who will break the thread today?")
-setQuestions(1, 14, "The perfect day to be rejected in an epic way… You can bring chocolates, letters, give kisses…")
+setQuestions(14, 2, "The perfect day to be rejected in an epic way… You can bring chocolates, letters, give kisses…")
 setQuestions(8, 3, "The feminist girls are going to go crazy today... It's their day, and of all women, you know what I mean")
 setQuestions(18, 4, "Jesus died.")
 setQuestions(30, 4, "Children receive gifts from adults... Why?  because they are kids!!!")
 setQuestions(1, 5, "Nobody works today!!!  because it's a work day")
 setQuestions(5, 5, "would you like to go to town?  but bring your gun please...")
 setQuestions(10, 5, "We better bring flowers to our mother...")
-setQuestions(16, 6, "We better take something for dad, or he'll feel bad in his day...")
+setQuestions(18, 6, "We better take something for dad, or he'll feel bad in his day...")
 setQuestions(2, 10, "Today is to remember that we must be peaceful")
 setQuestions(24, 10, "196 countries joined today")
 setQuestions(31, 10, "We need to find a suitable costume NOW!  IT'S OCTOBER")
@@ -393,9 +409,10 @@ function setQuestions(d, m, q) {
   )
 }
 
+let pl = POINTSLIFE
+let randomlyQuestions = []
+let numberQ = 0
 function game() {
-  let pl = POINTSLIFE
-  let randomlyQuestions = []
   let temp = 0
 
   for(let i = 0; i < 5; i++) {
@@ -422,13 +439,61 @@ function game() {
     }
   }
   
+  document.querySelector(".today-date").style.display = "none"
   eventsContainer.style.display = "none";
-  eventDay.style.display = "none"
-  eventDate.style.display = "none"
   initGameContainer.style.display = "none"
   gameContainer.style.display = "flex"
-
   
+  questinoToShow.innerHTML = randomlyQuestions[numberQ].question
+  possibleAnswers[0].innerHTML = findHoliday(randomlyQuestions[numberQ])
+  possibleAnswers[1].innerHTML = findHoliday(eventsArr[randomly(0, 34)])
+  possibleAnswers[2].innerHTML = findHoliday(eventsArr[randomly(0, 34)])
+
+  possibleAnswers[0].style.order = randomly(0, 3)
+  possibleAnswers[1].style.order = randomly(0, 3)
+  possibleAnswers[2].style.order = randomly(0, 3)
+}
+
+function isTheGoodAnswer(event) {
+  if(event.textContent.match(findHoliday(randomlyQuestions[numberQ]))) {
+    questinoToShow.innerHTML = randomlyQuestions[numberQ].question
+    possibleAnswers[0].innerHTML = findHoliday(randomlyQuestions[numberQ])
+    possibleAnswers[1].innerHTML = findHoliday(eventsArr[randomly(0, 34)])
+    possibleAnswers[2].innerHTML = findHoliday(eventsArr[randomly(0, 34)])
+
+    possibleAnswers[0].style.order = randomly(0, 3)
+    possibleAnswers[1].style.order = randomly(0, 3)
+    possibleAnswers[2].style.order = randomly(0, 3)
+    if(numberQ >= 4) {
+      document.querySelector(".result").innerHTML = "Sorry, you lose :c"
+      document.querySelector(".result").style.display = "flex"
+      document.querySelector(".today-date").style.display = "flex"
+      eventsContainer.style.display = "flex";
+      initGameContainer.style.display = "none"
+      gameContainer.style.display = "none"
+      return;
+    }
+    numberQ++;
+  } else {
+    pl--;
+    if(pl <= 0) {
+      document.querySelector(".result").innerHTML = "Sorry, you lose :c"
+      document.querySelector(".result").style.display = "flex"
+      document.querySelector(".today-date").style.display = "flex"
+      eventsContainer.style.display = "flex";
+      initGameContainer.style.display = "none"
+      gameContainer.style.display = "none"
+      return;
+    }
+  }
+}
+
+function findHoliday(find) {
+  for(let i = 0; i < eventsArr.length; i++) {
+    if(find.day == eventsArr[i].day && find.month == eventsArr[i].month) {
+      return eventsArr[i].events[0].title;
+    }
+  }
 }
 
 function randomly(min, max) {

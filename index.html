@@ -49,11 +49,17 @@
                 <div class="game" style="display: none;">
                     <div class="header-game">Remember that you need to choose the good answer</div>
                     <div class="question"></div>
-                    <div class="answer"></div>
+                    <div class="answer">
+                        <button id="answers" style="order: 0" onclick="isTheGoodAnswer(this)"></button>
+                        <button id="answers" style="order: 0" onclick="isTheGoodAnswer(this)"></button>
+                        <button id="answers" style="order: 0" onclick="isTheGoodAnswer(this)"></button>
+                    </div>
                 </div>
                 <div class="init-game">
                     <p>¿Do you want to play a game?</p>
                     <button onclick="game()">Yes</button>
+                </div>
+                <div class="result" style="display: none;">
                 </div>
             </div>
         </div>
